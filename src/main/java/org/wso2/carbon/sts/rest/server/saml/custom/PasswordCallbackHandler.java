@@ -1,4 +1,4 @@
-package org.wso2.carbon.sts.rest.server.custom;
+package org.wso2.carbon.sts.rest.server.saml.custom;
 
 import java.io.IOException;
 

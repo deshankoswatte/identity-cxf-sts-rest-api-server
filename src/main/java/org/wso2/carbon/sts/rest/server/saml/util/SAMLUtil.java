@@ -1,16 +1,19 @@
-package org.wso2.carbon.sts.rest.server.util;
+package org.wso2.carbon.sts.rest.server.saml.util;
 
 import org.apache.cxf.jaxws.context.WrappedMessageContext;
 import org.apache.cxf.message.MessageImpl;
-import org.apache.cxf.rt.security.claims.Claim;
-import org.apache.cxf.rt.security.claims.ClaimCollection;
 import org.apache.cxf.sts.STSConstants;
 import org.apache.cxf.sts.StaticSTSProperties;
-import org.apache.cxf.sts.claims.ClaimTypes;
 import org.apache.cxf.sts.request.KeyRequirements;
 import org.apache.cxf.sts.request.TokenRequirements;
 import org.apache.cxf.sts.service.EncryptionProperties;
-import org.apache.cxf.sts.token.provider.*;
+import org.apache.cxf.sts.token.provider.AttributeStatementProvider;
+import org.apache.cxf.sts.token.provider.AuthenticationStatementProvider;
+import org.apache.cxf.sts.token.provider.DefaultSubjectProvider;
+import org.apache.cxf.sts.token.provider.SAMLTokenProvider;
+import org.apache.cxf.sts.token.provider.TokenProvider;
+import org.apache.cxf.sts.token.provider.TokenProviderParameters;
+import org.apache.cxf.sts.token.provider.TokenProviderResponse;
 import org.apache.wss4j.common.WSS4JConstants;
 import org.apache.wss4j.common.crypto.Crypto;
 import org.apache.wss4j.common.crypto.CryptoFactory;
@@ -20,15 +23,15 @@ import org.apache.wss4j.common.saml.builder.SAML1Constants;
 import org.apache.wss4j.common.saml.builder.SAML2Constants;
 import org.apache.wss4j.common.util.DOM2Writer;
 import org.w3c.dom.Element;
-import org.wso2.carbon.sts.rest.server.custom.CustomAttributeProvider;
-import org.wso2.carbon.sts.rest.server.custom.CustomAuthenticationProvider;
-import org.wso2.carbon.sts.rest.server.custom.PasswordCallbackHandler;
+import org.wso2.carbon.sts.rest.server.saml.custom.CustomAttributeProvider;
+import org.wso2.carbon.sts.rest.server.saml.custom.CustomAuthenticationProvider;
+import org.wso2.carbon.sts.rest.server.saml.custom.PasswordCallbackHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class Util {
+public class SAMLUtil {
 
     /**
      * @return
@@ -138,7 +141,7 @@ public class Util {
     /**
      * @return
      */
-    private static Properties getEncryptionProperties() {
+    public static Properties getEncryptionProperties() {
         Properties properties = new Properties();
         properties.put(
                 "org.apache.wss4j.crypto.provider", "org.apache.wss4j.common.crypto.Merlin"
@@ -147,26 +150,5 @@ public class Util {
         properties.put("org.apache.wss4j.crypto.merlin.keystore.file", "keys/stsstore.jks");
 
         return properties;
-    }
-
-    /**
-     * Create a set of parsed Claims
-     */
-    private static ClaimCollection createClaims() {
-        ClaimCollection claims = new ClaimCollection();
-
-        Claim claim = new Claim();
-        claim.setClaimType(ClaimTypes.FIRSTNAME);
-        claims.add(claim);
-
-        claim = new Claim();
-        claim.setClaimType(ClaimTypes.LASTNAME);
-        claims.add(claim);
-
-        claim = new Claim();
-        claim.setClaimType(ClaimTypes.EMAILADDRESS);
-        claims.add(claim);
-
-        return claims;
     }
 }

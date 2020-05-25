@@ -1,10 +1,9 @@
-package org.wso2.carbon.sts.rest.server.custom;
+package org.wso2.carbon.sts.rest.server.saml.custom;
 
 import org.apache.cxf.sts.token.provider.AuthenticationStatementProvider;
 import org.apache.cxf.sts.token.provider.TokenProviderParameters;
 import org.apache.wss4j.common.WSS4JConstants;
 import org.apache.wss4j.common.saml.bean.AuthenticationStatementBean;
-import org.apache.wss4j.common.saml.bean.SubjectLocalityBean;
 import org.apache.wss4j.common.saml.builder.SAML1Constants;
 import org.apache.wss4j.common.saml.builder.SAML2Constants;
 
