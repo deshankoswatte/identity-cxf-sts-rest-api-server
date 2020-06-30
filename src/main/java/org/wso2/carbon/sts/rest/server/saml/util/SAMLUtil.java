@@ -104,6 +104,7 @@ public class SAMLUtil {
     private static TokenProviderParameters createProviderParameters(
             String tokenType, String keyType
     ) throws WSSecurityException {
+
         TokenProviderParameters parameters = new TokenProviderParameters();
 
         TokenRequirements tokenRequirements = new TokenRequirements();
@@ -142,12 +143,13 @@ public class SAMLUtil {
      * @return
      */
     public static Properties getEncryptionProperties() {
+
         Properties properties = new Properties();
         properties.put(
                 "org.apache.wss4j.crypto.provider", "org.apache.wss4j.common.crypto.Merlin"
         );
-        properties.put("org.apache.wss4j.crypto.merlin.keystore.password", "stsspass");
-        properties.put("org.apache.wss4j.crypto.merlin.keystore.file", "keys/stsstore.jks");
+        properties.put("org.apache.wss4j.crypto.merlin.keystore.password", "wso2carbon");
+        properties.put("org.apache.wss4j.crypto.merlin.keystore.file", "keys/wso2carbon.jks");
 
         return properties;
     }

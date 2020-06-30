@@ -21,8 +21,8 @@ public class PasswordCallbackHandler implements CallbackHandler {
                 } else if ("bob".equals(pc.getIdentifier())) {
                     pc.setPassword("trombone");
                     break;
-                } else if ("mystskey".equals(pc.getIdentifier())) {
-                    pc.setPassword("stskpass");
+                } else if ("wso2carbon".equals(pc.getIdentifier())) {
+                    pc.setPassword("wso2carbon");
                     break;
                 } else if ("myservicekey".equals(pc.getIdentifier())) {
                     pc.setPassword("skpass");

@@ -1,0 +1,10 @@
+org/wso2/carbon/sts/rest/server/sts/util/STSUtil.class
+org/wso2/carbon/sts/rest/server/saml/util/SAMLUtil.class
+org/wso2/carbon/sts/rest/server/sts/custom/CustomClaimsHandler.class
+org/wso2/carbon/sts/rest/server/saml/custom/PasswordCallbackHandler.class
+org/wso2/carbon/sts/rest/server/Test.class
+org/wso2/carbon/sts/rest/server/sts/custom/CustomClaimParser$CustomRequestClaim.class
+org/wso2/carbon/sts/rest/server/sts/custom/CustomClaimParser.class
+org/wso2/carbon/sts/rest/server/sts/util/STSUtil$1.class
+org/wso2/carbon/sts/rest/server/saml/custom/CustomAttributeProvider.class
+org/wso2/carbon/sts/rest/server/saml/custom/CustomAuthenticationProvider.class

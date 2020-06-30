@@ -1,0 +1,8 @@
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/saml/custom/PasswordCallbackHandler.java
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/saml/custom/CustomAuthenticationProvider.java
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/sts/util/STSUtil.java
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/saml/util/SAMLUtil.java
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/Test.java
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/saml/custom/CustomAttributeProvider.java
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/sts/custom/CustomClaimsHandler.java
+/home/dehami/Desktop/org.wso2.carbon.sts.rest.server/src/main/java/org/wso2/carbon/sts/rest/server/sts/custom/CustomClaimParser.java

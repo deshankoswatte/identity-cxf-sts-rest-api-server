@@ -53,27 +53,27 @@ public class CustomAttributeProvider implements AttributeStatementProvider {
             AttributeBean attributeBean = createAttributeFromClaim(claim, tokenType);
             attributeList.add(attributeBean);
         }
-
-        ReceivedToken onBehalfOf = tokenRequirements.getOnBehalfOf();
-        ReceivedToken actAs = tokenRequirements.getActAs();
-        try {
-            if (onBehalfOf != null) {
-                AttributeBean parameterBean =
-                        handleAdditionalParameters(false, onBehalfOf.getToken(), tokenType);
-                if (!parameterBean.getAttributeValues().isEmpty()) {
-                    attributeList.add(parameterBean);
-                }
-            }
-            if (actAs != null) {
-                AttributeBean parameterBean =
-                        handleAdditionalParameters(true, actAs.getToken(), tokenType);
-                if (!parameterBean.getAttributeValues().isEmpty()) {
-                    attributeList.add(parameterBean);
-                }
-            }
-        } catch (WSSecurityException ex) {
-            throw new STSException(ex.getMessage(), ex);
-        }
+//
+//        ReceivedToken onBehalfOf = tokenRequirements.getOnBehalfOf();
+//        ReceivedToken actAs = tokenRequirements.getActAs();
+//        try {
+//            if (onBehalfOf != null) {
+//                AttributeBean parameterBean =
+//                        handleAdditionalParameters(false, onBehalfOf.getToken(), tokenType);
+//                if (!parameterBean.getAttributeValues().isEmpty()) {
+//                    attributeList.add(parameterBean);
+//                }
+//            }
+//            if (actAs != null) {
+//                AttributeBean parameterBean =
+//                        handleAdditionalParameters(true, actAs.getToken(), tokenType);
+//                if (!parameterBean.getAttributeValues().isEmpty()) {
+//                    attributeList.add(parameterBean);
+//                }
+//            }
+//        } catch (WSSecurityException ex) {
+//            throw new STSException(ex.getMessage(), ex);
+//        }
 
         attrBean.setSamlAttributes(attributeList);
 
@@ -81,7 +81,10 @@ public class CustomAttributeProvider implements AttributeStatementProvider {
     }
 
     /**
-     * Create a default attribute
+     * Create a default attribute.
+     *
+     * @param tokenType Type of the token SAML1.1/SAML2.0.
+     * @return Attribute bean containing the default attribute.
      */
     private AttributeBean createDefaultAttribute(String tokenType) {
         AttributeBean attributeBean = new AttributeBean();
@@ -95,41 +98,41 @@ public class CustomAttributeProvider implements AttributeStatementProvider {
             attributeBean.setQualifiedName("http://wso2.org/claims/username");
         }
 
-        attributeBean.addAttributeValue("admin@wso2.com");
+        attributeBean.addAttributeValue("admin");
 
         return attributeBean;
     }
 
-    /**
-     * Handle ActAs or OnBehalfOf elements.
-     */
-    private AttributeBean handleAdditionalParameters(
-            boolean actAs,
-            Object parameter,
-            String tokenType
-    ) throws WSSecurityException {
-        AttributeBean parameterBean = new AttributeBean();
-
-        String claimType = actAs ? "CustomActAs" : "CustomOnBehalfOf";
-        if (WSS4JConstants.WSS_SAML2_TOKEN_TYPE.equals(tokenType) || WSS4JConstants.SAML2_NS.equals(tokenType)) {
-            parameterBean.setQualifiedName(claimType);
-            parameterBean.setNameFormat("http://cxf.apache.org/sts/custom/" + claimType);
-        } else {
-            parameterBean.setSimpleName(claimType);
-            parameterBean.setQualifiedName("http://cxf.apache.org/sts/custom/" + claimType);
-        }
-        if (parameter instanceof UsernameTokenType) {
-            parameterBean.addAttributeValue(
-                    ((UsernameTokenType)parameter).getUsername().getValue()
-            );
-        } else if (parameter instanceof Element) {
-            SamlAssertionWrapper wrapper = new SamlAssertionWrapper((Element)parameter);
-            SAMLTokenPrincipal principal = new SAMLTokenPrincipalImpl(wrapper);
-            parameterBean.addAttributeValue(principal.getName());
-        }
-
-        return parameterBean;
-    }
+//    /**
+//     * Handle ActAs or OnBehalfOf elements.
+//     */
+//    private AttributeBean handleAdditionalParameters(
+//            boolean actAs,
+//            Object parameter,
+//            String tokenType
+//    ) throws WSSecurityException {
+//        AttributeBean parameterBean = new AttributeBean();
+//
+//        String claimType = actAs ? "CustomActAs" : "CustomOnBehalfOf";
+//        if (WSS4JConstants.WSS_SAML2_TOKEN_TYPE.equals(tokenType) || WSS4JConstants.SAML2_NS.equals(tokenType)) {
+//            parameterBean.setQualifiedName(claimType);
+//            parameterBean.setNameFormat("http://cxf.apache.org/sts/custom/" + claimType);
+//        } else {
+//            parameterBean.setSimpleName(claimType);
+//            parameterBean.setQualifiedName("http://cxf.apache.org/sts/custom/" + claimType);
+//        }
+//        if (parameter instanceof UsernameTokenType) {
+//            parameterBean.addAttributeValue(
+//                    ((UsernameTokenType)parameter).getUsername().getValue()
+//            );
+//        } else if (parameter instanceof Element) {
+//            SamlAssertionWrapper wrapper = new SamlAssertionWrapper((Element)parameter);
+//            SAMLTokenPrincipal principal = new SAMLTokenPrincipalImpl(wrapper);
+//            parameterBean.addAttributeValue(principal.getName());
+//        }
+//
+//        return parameterBean;
+//    }
 
     /**
      * Create an Attribute from a claim.
